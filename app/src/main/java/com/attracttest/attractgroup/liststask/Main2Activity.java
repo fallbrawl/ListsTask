@@ -15,10 +15,7 @@ import java.util.ArrayList;
 
 public class Main2Activity extends AppCompatActivity {
 
-    private DrawerLayout mDrawer;
     private Toolbar toolbar;
-    private NavigationView nvDrawer;
-    private Intent intent;
     private Fragment fragment2;
     private Bundle data;
 
@@ -34,22 +31,13 @@ public class Main2Activity extends AppCompatActivity {
             Log.e("staty", String.valueOf(wow.size()));
         }
 
-
         // Set a Toolbar to replace the ActionBar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Second");
 
-        // Find our drawer view
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        // Find our drawer view
-        nvDrawer = (NavigationView) findViewById(R.id.nvView);
-        // Setup drawer view
-        setupDrawerContent(nvDrawer);
-
         //Set fragment
         fragment2 = new Fragment2();
-
         fragment2.setArguments(data);
 
         FragmentManager fm = getSupportFragmentManager();
@@ -57,31 +45,6 @@ public class Main2Activity extends AppCompatActivity {
 
     }
 
-    private void setupDrawerContent(NavigationView navigationView) {
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        selectDrawerItem(menuItem);
-                        return true;
-                    }
-                });
-    }
-
-    public void selectDrawerItem(MenuItem menuItem) {
-
-        if (menuItem.getItemId() == R.id.nav_first_fragment) {
-            intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-        }
-
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
-        // Set action bar title
-        setTitle(menuItem.getTitle());
-        // Close the navigation drawer
-        mDrawer.closeDrawers();
-    }
     @Override
     protected void onDestroy() {
         super.onDestroy();

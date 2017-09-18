@@ -16,16 +16,18 @@ public class CustomClassRecyclerAdapter extends RecyclerView.Adapter<MyViewHolde
 
     private List<CustomClass> mData;
     private LayoutInflater mInflater;
+    private Context context;
 
     public CustomClassRecyclerAdapter(Context context, ArrayList<CustomClass> data) {
         this.mData = data;
         this.mInflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.custom_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
+        MyViewHolder holder = new MyViewHolder(view, context);
         return holder;
     }
 
